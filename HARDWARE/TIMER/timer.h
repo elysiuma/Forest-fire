@@ -6,6 +6,6 @@
 
 extern u8 data_u8[24];
 
-void Timer_Init(interval);
+void Timer_Init(interval); //初始化, interval为定时器中断时间间隔，单位为秒
 
 #endif

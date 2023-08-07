@@ -41,16 +41,18 @@ int main(void)
 	LED_Init();										// 初始化LED
 	
 	MQ2_Init();
+	Timer_mq2_Init();
 	BATTERY_Init();
 	if (is_4g)
 		mqtt4g_init();
 	customRTC_Init();
 	if (is_gps)
 		GPS_Init();
+	Timer_Init(2*60); // 初始化定时器，TIM2用于读取gps时间给RTC校时, 间隔单位为秒，interval*12为校时总周期
 	if (is_lora)
 		is_lora_init = LORA_Init();
 		printf("LORA Init OK\r\n");
-	Timer_Init(); // 初始化定时器，需在LORA初始化后进行，TIM2用于读取gps时间给RTC校时
+	
 	LED = 1;
 	MQ2 = 1;
 

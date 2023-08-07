@@ -4,7 +4,7 @@
 #include "lora.h"
 
 static u8 timer_flag=1;
-void Timer2_Init(void)
+void Timer_mq2_Init(void)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 

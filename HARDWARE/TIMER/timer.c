@@ -5,8 +5,9 @@
 
 extern u8 data_u8[24];
 //u8 data_test[3] = {0x01, 0x02, 0x03};
-void Timer_Init(void)
+void Timer_Init(interval)
 {
+    // interval为定时器中断时间间隔，单位为秒
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -15,7 +16,7 @@ void Timer_Init(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0x03;   //抢占优先级为3
     NVIC_InitStructure.NVIC_IRQChannelSubPriority=0x03;          //响应优先级为3
-    TIM_TimeBaseInitStructure.TIM_Period=(2*60*10000-1);     //Tout=(ARR+1)(PSC+1)/Tclk   (2999999+1)(8399+1)/84M
+    TIM_TimeBaseInitStructure.TIM_Period=(interval*10000-1);     //Tout=(ARR+1)(PSC+1)/Tclk   (2999999+1)(8399+1)/84M
     TIM_TimeBaseInitStructure.TIM_Prescaler=8399;
     TIM_TimeBaseInitStructure.TIM_CounterMode=TIM_CounterMode_Up;   // 向上计数
     TIM_TimeBaseInitStructure.TIM_ClockDivision=TIM_CKD_DIV1;
